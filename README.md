@@ -1,91 +1,105 @@
+Sure! Below is a README file tailored for your GitHub repository, providing an overview of the project, setup instructions, and other relevant details.
 
+---
 
-# Event Extraction Project from Google News
+# Machine Learning Framework for Real-Time Disaster Event Extraction
 
-## Overview
-This project is designed to extract and analyze news events related to natural disasters from Google News. It uses advanced data clustering techniques and geolocation tools to identify, categorize, and extract precise locations of events reported in real-time news articles. This project is particularly useful for researchers, data analysts, and organizations that need to monitor and respond to natural disasters efficiently.
+This repository contains a comprehensive machine learning framework designed to automatically extract, analyze, classify, and visualize disaster events from diverse online streams, specifically Google News RSS feeds and Twitter. The framework integrates advanced Natural Language Processing (NLP) techniques and various clustering algorithms to provide actionable intelligence for disaster management.
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+- [Results](#results)
+- [Challenges and Limitations](#challenges-and-limitations)
+- [Future Work](#future-work)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Introduction
+Effective disaster management relies on the rapid acquisition and interpretation of event-related information. This framework leverages the vast amounts of real-time data available from online news and social media platforms to provide timely and accurate insights. By integrating advanced NLP models like BERT, RoBERTa, and BART, along with geospatial analysis and sentiment scoring, this system aims to enhance situational awareness and support informed decision-making during disaster response efforts.
 
 ## Features
-- **Event Extraction**: Automatically scrapes news articles from Google News related to specified types of natural disasters such as earthquakes, cyclones, and tornadoes.
-- **Data Clustering**: Utilizes clustering algorithms to categorize news based on similarity in content, ensuring that similar events are grouped for better analysis and reporting.
-- **Location Extraction**: Employs the Geopy library to accurately determine the geographical coordinates of the locations mentioned in the news articles.
-- **Exact Location Finder**: Integrates advanced geolocation techniques to refine the location data, providing precise coordinates for effective mapping and visualization.
+- **Data Acquisition**: Automated ingestion of data from Google News RSS feeds and Twitter API.
+- **Text Preprocessing**: HTML stripping, noise reduction, normalization, tokenization, stopword removal, and lemmatization.
+- **Named Entity Recognition (NER)**: Extraction of key entities using Transformer-based models (BERT, RoBERTa).
+- **Geocoding**: Conversion of location names to geographic coordinates using Nominatim.
+- **Event Classification**: Zero-shot classification using BART for flexible event categorization.
+- **Sentiment Analysis**: Assessment of public sentiment using the VADER model.
+- **Severity Scoring**: Calculation of composite severity scores based on extracted impact metrics.
+- **Event Clustering**: Grouping of related reports using algorithms like K-Means, DBSCAN, Agglomerative, and HDBSCAN.
+- **Visualization**: Interactive maps and temporal plots for visualizing results.
 
-## Technology Stack
-- Python: Primary programming language used for the project.
-- BeautifulSoup: Used for web scraping tasks.
-- Scikit-Learn: Applied for clustering news articles.
-- Geopy: Utilized for extracting and refining geographical data.
-- Pandas: Used for data manipulation and cleaning.
-- Requests: Library used for making HTTP requests to Google News.
+## Prerequisites
+Before you begin, ensure you have the following installed:
+- Python 3.8 or higher
+- pip (Python package installer)
+- Git (for cloning the repository)
 
-## Project Structure
-```
-event-extraction/
-│
-├── src/                     # Source files for the project
-│   ├── scraper.py           # Script to scrape news articles
-│   ├── cluster.py           # Script for clustering articles
-│   ├── location.py          # Script to extract and refine locations
-│   └── main.py              # Main script to run the processes
-│
-├── data/                    # Data storage for scraped articles
-│   ├── raw_data.csv         # Raw news data
-│   └── processed_data.csv   # Data after processing and clustering
-│
-├── notebooks/               # Jupyter notebooks for analysis
-│   └── analysis.ipynb       # Notebook for detailed data analysis
-│
-├── requirements.txt         # Python dependencies for the project
-└── README.md                # Project documentation
-```
-
-## Setup
-### Prerequisites
-Ensure you have Python 3.8+ installed on your system. You will also need pip to install dependencies.
-
-### Installation
-1. Clone the repository:
+## Setup and Installation
+1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/event-extraction.git
-   cd event-extraction
+   git clone https://github.com/yourusername/disaster-event-extraction.git
+   cd disaster-event-extraction
    ```
 
-2. Install the required Python packages:
+2. **Install Dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
+3. **Set Up API Keys**:
+   - Obtain API keys for Google News RSS and Twitter API.
+   - Place the keys in the appropriate configuration files or environment variables as specified in the `config.py` file.
+
+4. **Download Pre-trained Models**:
+   - Ensure you have access to pre-trained models like BERT, RoBERTa, and BART. These can be downloaded from the Hugging Face Model Hub.
+
 ## Usage
-To run the event extraction process, follow these steps:
-
-1. Navigate to the `src` directory:
+1. **Run the Data Acquisition Script**:
    ```bash
-   cd src
+   python data_acquisition.py
    ```
 
-2. Run the main script:
+2. **Process and Analyze Data**:
    ```bash
-   python main.py
+   python process_data.py
    ```
 
-This will execute the scraping, clustering, and location extraction processes sequentially and store the output in the `data/` directory.
+3. **Visualize Results**:
+   ```bash
+   python visualize_results.py
+   ```
 
-## Configuration
-- **Modify Clustering Parameters**: Adjust the parameters in `cluster.py` to change the clustering behavior.
-- **Customize Location Extraction**: Edit `location.py` to alter the geolocation extraction specifics.
+## Results
+The framework processes high-velocity data streams, identifies disaster hotspots, groups related reports, and provides actionable intelligence through interactive visualizations. Hypothetical results demonstrate the system's capacity to handle moderate data streams and accurately classify disaster events.
+
+## Challenges and Limitations
+- **Data Quality and Noise**: Social media data is often noisy and contains misinformation.
+- **NER Accuracy**: Extracting precise locations and impact figures from unstructured text remains challenging.
+- **Geocoding Ambiguity**: Ambiguous place names require contextual disambiguation.
+- **Zero-Shot Classification Limits**: Performance depends on the chosen pre-trained model and label formulation.
+- **Severity Score Limitations**: Reliance on explicit mention of impact figures.
+- **Clustering Complexity**: Defining optimal feature space and distance metrics.
+- **Scalability and Real-Time Constraints**: Efficient code and robust infrastructure are essential.
+
+## Future Work
+- **Multimodal Data Integration**: Incorporate images, videos, and satellite imagery.
+- **Improved Disambiguation**: Develop sophisticated disambiguation techniques.
+- **Advanced Temporal Analysis**: Implement event forecasting models.
+- **Cross-lingual Capabilities**: Extend the framework to handle multiple languages.
+- **Fact-Checking and Misinformation Detection**: Integrate credibility assessment modules.
+- **User Feedback Integration**: Enable continuous learning through expert feedback.
+- **Privacy-Preserving Techniques**: Explore federated learning for data sharing.
 
 ## Contributing
-Contributions to improve the project are welcome. Please follow these steps to contribute:
-1. Fork the repository.
-2. Create a new branch: `git checkout -b new-feature`
-3. Make your changes and commit them: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin new-feature`
-5. Submit a pull request.
+Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on how to contribute to this project.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ---
 
-This README file provides a detailed guide on my project, from an introduction to the technology stack, setup instructions, usage details, and contribution guidelines. Adjust the repository links and specific configuration details as necessary to match your project's setup.
+Feel free to customize this README to better fit your project's specific needs and details.
